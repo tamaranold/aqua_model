@@ -10,13 +10,14 @@ In the **auqa_model** project, image recognition models are trained to classify 
 
 Images for training and testing were taken by myself. All tokens were randomly placed on the game board. The images were taken of the whole board and cropped with R ([code](https://github.com/tamaranold/aqua_model/blob/42c7dc5298f3399c1a1e03eb38dad05e32ad2227/syntax/prep_cut%20mix.R)). Two datasets with the same images were created, one sorted by animals (crab, fish, jellyfish, seahorse, starfish, tortoise) and one sorted by color (blue, green, red, pink, purple, yellow).  
 
-720 images (120 for each of the 6 categories) were sampled for the test dataset ([code](https://github.com/tamaranold/aqua_model/blob/f5eb6b63d1706c3b280370c0e7285cfa3641d07b/syntax/create_testset.R)). Preprocessing for the training dataset contained rotating each image by 0, 90, 180 and 270 degrees ([code](https://github.com/tamaranold/aqua_model/blob/42c7dc5298f3399c1a1e03eb38dad05e32ad2227/syntax/prep_rotate.R)). Each category included between 2756 and 2992 images. 80% of the images were used as testing dataset, 20% as validation dataset. 
+720 images (120 for each of the 6 categories) were sampled for the test dataset ([code](https://github.com/tamaranold/aqua_model/blob/f5eb6b63d1706c3b280370c0e7285cfa3641d07b/syntax/create_testset.R) ). Preprocessing for the training dataset contained rotating each image by 0, 90, 180 and 270 degrees ([code](https://github.com/tamaranold/aqua_model/blob/42c7dc5298f3399c1a1e03eb38dad05e32ad2227/syntax/prep_rotate.R) ). Each category included between 2756 and 2992 images. 80% of the images were used as testing dataset, 20% as validation dataset. 
 
 Considering possible copyright issues, the datasets/images used are not uploaded to this project.
 
 # analysis
 
-Two models were fitted - one for each player ([code animal] (https://github.com/tamaranold/aqua_model/blob/42c7dc5298f3399c1a1e03eb38dad05e32ad2227/syntax/model_animal.R); [code color](https://github.com/tamaranold/aqua_model/blob/42c7dc5298f3399c1a1e03eb38dad05e32ad2227/syntax/model_color.R)). 
+Two models were fitted - one for each player
+([code animal](https://github.com/tamaranold/aqua_model/blob/42c7dc5298f3399c1a1e03eb38dad05e32ad2227/syntax/model_animal.R) ; [code color](https://github.com/tamaranold/aqua_model/blob/42c7dc5298f3399c1a1e03eb38dad05e32ad2227/syntax/model_color.R)). 
 
 ## animal model
 
