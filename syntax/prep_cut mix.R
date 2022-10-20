@@ -1,15 +1,15 @@
-# Imagerecognition 
+# Image Recognition 
 # Cut images into 36 single images
 
-# libraries
+# load libraries
 library(magick)
 library(tidyverse)
 
-# path
-indir <- "C:/Users/nold_/Desktop/Bilder/ac/mix/"
-outdir <- "C:/Users/nold_/Desktop/Bilder/ac/single/"
+# set path
+indir <- ".../mix/"
+outdir <- ".../single/"
 
-# files 
+# get image names 
 files <- list.files(indir)
 
 # cut image in tiles
@@ -18,7 +18,7 @@ for(n in files){
   img <-  image_read(paste0(indir, n))
   imgnum <- which(files %in% n)
   
-  # describe dimension of image
+  # describe dimension for cutting
   info <- image_info(img)
   width <- info$width/6
   height <- info$height/6
@@ -34,12 +34,13 @@ for(n in files){
            width_start = cell * width - width,
            height_start = row * height - height)
   
-  
+  # cut each image in 36 single images
   for(i in 1:nrow(mat)){
     
+    # cutting positions
     window <- paste0(round(width, 0), "x", round(height,0), "+",
                      round(mat$width_start[i],0), "+", round(mat$height_start[i],0))
-    #  print(window)
+    # cut
     token <- image_crop(img, window)
     image_write(token,
                 paste0(outdir, "img_8_", imgnum, "_", mat$nam[i], ".jpg"))
