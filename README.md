@@ -10,7 +10,7 @@ In the **auqa_model** project, image recognition models are trained to classify 
 
 Images for training and testing were taken by myself. All tokens were randomly placed on the game board. The images were taken of the whole board and cropped with R (syntax: XXX). Two datasets with the same images were created, one sorted by animals (crab, fish, jellyfish, seahorse, starfish, tortoise) and one sorted by color (blue, green, red, pink, purple, yellow).  
 
-720 images (120 for each of the 6 categories) were sampled for the test dataset (syntax: XXX). Preprocessing for the training dataset contained rotating each image by 0, 90, 180 and 270 degrees (syntax: XXX). Each category included between 2756 and 2992 images. 80% of the images were used as testing dataset, 20% as validation dataset. 
+720 images (120 for each of the 6 categories) were sampled for the test dataset ([syntax](https://github.com/tamaranold/aqua_model/blob/f5eb6b63d1706c3b280370c0e7285cfa3641d07b/syntax/create_testset.R)). Preprocessing for the training dataset contained rotating each image by 0, 90, 180 and 270 degrees (syntax: XXX). Each category included between 2756 and 2992 images. 80% of the images were used as testing dataset, 20% as validation dataset. 
 
 Considering possible copyright issues, the datasets/images used are not uploaded to this project.
 
