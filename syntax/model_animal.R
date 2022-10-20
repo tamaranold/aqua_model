@@ -1,5 +1,5 @@
 # Image Recognition 
-# Model - color 
+# Model - animal prediction 
 
 # load packages
 library(tidyverse)
@@ -48,7 +48,7 @@ validation_images_a <- flow_images_from_directory(path_train_a,
                                                    seed = 2022, 
                                                    color_mode = "rgb")
 ## training set size
-#table(test_images_a$classes)
+#table(train_images_a$classes)
 
 # train model
 mod_base <- application_xception(weights = 'imagenet', 
@@ -89,6 +89,7 @@ model_a <- model_function()
 model_a
 
 
+# start training process
 batch_size <- 32
 epochs <- 15
 
@@ -101,6 +102,7 @@ hist <- model_a %>% fit(
   verbose = 2
 )
 
+## save model
 save_model_tf(model_a, "model_animal")
 
 # evaluate model
@@ -128,15 +130,19 @@ predictions_a <- model_a %>%
     steps = test_images_a$n
   ) %>% as.data.frame
 
+## save prediciton matrix
 write.csv2(predictions_a, "animal_predicition.csv")
 
+
+# plot predition of each category
 names(predictions_a) <- paste0("Class",0:5)
 
 predictions_a$predicted_class <- 
   paste0("Class",apply(predictions_a,1,which.max)-1)
 predictions_a$true_class <- paste0("Class",test_images_a$classes)
 
-predictions_a %>% group_by(true_class) %>% 
+predictions_a %>% 
+group_by(true_class) %>% 
   summarise(percentage_true = 100*sum(predicted_class == 
                                         true_class)/n()) %>% 
   left_join(data.frame(color= names(test_images_a$class_indices), 
@@ -145,8 +151,8 @@ predictions_a %>% group_by(true_class) %>%
   mutate(color = fct_reorder(color,percentage_true)) %>%
   ggplot(aes(x=color,y=percentage_true,fill=percentage_true, 
              label=percentage_true)) +
-  geom_col() + theme_minimal() + coord_flip() +
+  geom_col() + 
+  theme_minimal() + 
+  coord_flip() +
   geom_text(nudge_y = 3) + 
   ggtitle("Percentage correct classifications by animal")
-
-
