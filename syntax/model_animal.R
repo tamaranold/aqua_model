@@ -12,8 +12,8 @@ library(reticulate)
 #install_keras()
 
 # set path 
-traindir <- "C:/Users/nold_/Desktop/animal/train/"
-testdir <- "C:/Users/nold_/Desktop/animal/test/"
+traindir <- ".../train/"
+testdir <- ".../test/"
 
 # set number of categories
 label_list_a <- dir(traindir)
