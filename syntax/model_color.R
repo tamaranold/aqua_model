@@ -1,5 +1,5 @@
 # Image Recognition 
-# Model - color 
+# Model - color predictiom
 
 # load packages
 library(tidyverse)
@@ -88,7 +88,7 @@ model_function <- function(learning_rate = 0.001,
 model <- model_function()
 model
 
-
+# start training process
 batch_size <- 32
 epochs <- 25
 
@@ -101,6 +101,7 @@ hist <- model %>% fit(
   verbose = 2
 )
 
+# save model
 save_model_tf(model, "model_color")
 
 # evaluate model
@@ -128,15 +129,18 @@ predictions_ac <- model %>%
     steps = test_images_ac$n
   ) %>% as.data.frame
 
+## save predition matrix
 write.csv2(predictions_ac, "color_predicition.csv")
 
+# plot accuracy of each color
 names(predictions_ac) <- paste0("Class",0:5)
 
 predictions_ac$predicted_class <- 
   paste0("Class",apply(predictions_ac,1,which.max)-1)
 predictions_ac$true_class <- paste0("Class",test_images_ac$classes)
 
-predictions_ac %>% group_by(true_class) %>% 
+predictions_ac %>% 
+group_by(true_class) %>% 
   summarise(percentage_true = 100*sum(predicted_class == 
                                         true_class)/n()) %>% 
   left_join(data.frame(color= names(test_images_ac$class_indices), 
@@ -145,9 +149,8 @@ predictions_ac %>% group_by(true_class) %>%
   mutate(color = fct_reorder(color,percentage_true)) %>%
   ggplot(aes(x=color,y=percentage_true,fill=percentage_true, 
              label=percentage_true)) +
-  geom_col() + theme_minimal() + coord_flip() +
+  geom_col() + 
+  theme_minimal() + 
+  coord_flip() +
   geom_text(nudge_y = 3) + 
   ggtitle("Percentage correct classifications by color")
-
-# save model
-#save_model_tf(model, "model_ac_26percent")
