@@ -6,8 +6,8 @@ library(magick)
 library(tidyverse)
 
 # define path 
-indir <- ".../original/"
-outdir <- ".../train/"
+indir <- "./original/"
+outdir <- "./train/"
 
 # get folders 
 infolder <- list.dirs(indir,

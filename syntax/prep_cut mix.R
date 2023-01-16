@@ -6,8 +6,8 @@ library(magick)
 library(tidyverse)
 
 # set path
-indir <- ".../mix/"
-outdir <- ".../single/"
+indir <- "./mix/"
+outdir <- "./single/"
 
 # get image names 
 files <- list.files(indir)
