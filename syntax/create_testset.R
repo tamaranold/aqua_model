@@ -2,8 +2,8 @@
 # create testset
 
 # set path
-indir <- ".../original/"
-outdir <- ".../test/"
+indir <- "./original/"
+outdir <- "./test/"
 
 # recreate folders
 infolder <- list.dirs(indir,
